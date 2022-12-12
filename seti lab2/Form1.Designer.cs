@@ -36,12 +36,10 @@
             this.labelNumberOfNodes = new System.Windows.Forms.Label();
             this.labelNetworkMask = new System.Windows.Forms.Label();
             this.textBoxInputPrefix = new System.Windows.Forms.TextBox();
-            this.buttonInputNodes = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // buttonInput
@@ -112,17 +110,6 @@
             this.textBoxInputPrefix.TabIndex = 7;
             this.textBoxInputPrefix.Text = "24";
             // 
-            // buttonInputNodes
-            // 
-            this.buttonInputNodes.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.buttonInputNodes.Location = new System.Drawing.Point(1, 200);
-            this.buttonInputNodes.Name = "buttonInputNodes";
-            this.buttonInputNodes.Size = new System.Drawing.Size(120, 23);
-            this.buttonInputNodes.TabIndex = 8;
-            this.buttonInputNodes.Text = "Создать подсеть";
-            this.buttonInputNodes.UseVisualStyleBackColor = true;
-            this.buttonInputNodes.Click += new System.EventHandler(this.button1_Click);
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -159,26 +146,15 @@
             this.label5.TabIndex = 12;
             this.label5.Text = "маска сети:";
             // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 15;
-            this.listBox1.Location = new System.Drawing.Point(0, 229);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(120, 94);
-            this.listBox1.TabIndex = 13;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(332, 450);
-            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.buttonInputNodes);
             this.Controls.Add(this.textBoxInputPrefix);
             this.Controls.Add(this.labelNetworkMask);
             this.Controls.Add(this.labelNumberOfNodes);
@@ -204,11 +180,9 @@
         private Label labelNumberOfNodes;
         private Label labelNetworkMask;
         private TextBox textBoxInputPrefix;
-        private Button buttonInputNodes;
         private Label label2;
         private Label label3;
         private Label label4;
         private Label label5;
-        private ListBox listBox1;
     }
 }

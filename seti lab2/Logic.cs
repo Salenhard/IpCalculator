@@ -11,7 +11,7 @@ namespace seti_lab2
         private string ip;
         private int prefix;
 
-        private string convertToDecimal(string binary)
+        private static string ConvertToDecimal(string binary)
         {
             double decimalD = 0;
             for(int i = 0; i < binary.Length; i++)
@@ -20,18 +20,20 @@ namespace seti_lab2
             return decimalD.ToString();
         }
 
-        private string convertToBinary(string byteS)
+        private static string ConvertToBinary(string byteS)
         {
             string binary = ""; 
-            Stack<int> queueByte = new Stack<int>();
+            Stack<int> stackByte = new Stack<int>();
             int byteI = int.Parse(byteS);
             while (byteI > 0)
             {
-                queueByte.Push(byteI % 2);
+                stackByte.Push(byteI % 2);
                 byteI = byteI / 2;
-            }  
-            while(queueByte.Count > 0)
-                binary = binary + queueByte.Pop();
+            }
+            while (stackByte.Count < 8)
+                stackByte.Push(0);
+            while(stackByte.Count > 0)
+                binary += stackByte.Pop();
             return binary;
         }
 
@@ -40,7 +42,7 @@ namespace seti_lab2
             ip = "";
             prefix = 0;
         }
-        public void setPrefix(int newPrefix)
+        public void SetPrefix(int newPrefix)
         {
             if (newPrefix >= 0 && newPrefix <= 31)
             {
@@ -51,7 +53,7 @@ namespace seti_lab2
 
         public void setIp(string newIp)
         {
-            if(newIp!= null)
+            if(newIp != null)
             {
                 string[] str = newIp.Split(".");
 
@@ -73,7 +75,7 @@ namespace seti_lab2
 
         public IpAdress(string newIp, int newPrefix)
         {
-            setPrefix(newPrefix);
+            SetPrefix(newPrefix);
             setIp(newIp);
         }
 
@@ -85,67 +87,78 @@ namespace seti_lab2
         {
             return prefix;
         }
+        private string byteAnd(string byte1, string byte2, int n)
+        {
+            string str = "";
+            for (int i = 0; i < n; i++)
+                if (byte1[i] == '1' && byte2[i] == '1')
+                    str += "1";
+                else
+                    str += "0";
+           return str;
 
+        }
         public string getWideNetworkAdress()
         {
             string[] str = ip.Split(".");
-            string lastbyte = "255";
-            string mask = "";
             string wideNetworkAdress = "";
-            string byteS2;
-            string byteS = "";
+            string mask = "";
+            string byteAdress = "";
+            string byteBinAdress = "";
+            string networkBinAdress = "";
+
             for (int i = 0; i < 32; i++)
-            {
-                if (i < prefix)
                     mask += "1";
-                else
-                    mask += "0";
-            }
-            for (int i = 0; i < 3; i++)
+
+            for (int i = 0; i < str.Length; i++)
+                byteBinAdress += ConvertToBinary(str[i]);
+
+            networkBinAdress = byteAnd(byteBinAdress, mask, prefix);
+            for (int i = 32 - prefix; i < 32; i++)
+                networkBinAdress += "1";
+            for (int i = 0; i < 4; i++)
             {
-                byteS2 = convertToBinary(str[i]);
                 for (int j = 0; j < 8; j++)
-                {
-                    if (j + i * 8 <= prefix - 1)
-                        byteS += byteS2[j];
+                    byteAdress += networkBinAdress[i * 8 + j];
+                    if (i == 3)
+                        wideNetworkAdress += ConvertToDecimal(byteAdress);
                     else
-                        byteS += "1";
-                }
-                wideNetworkAdress += convertToDecimal(byteS) + ".";
-                byteS = "";
+                        wideNetworkAdress += ConvertToDecimal(byteAdress) + ".";
+                    byteAdress = "";
             }
-            return wideNetworkAdress += lastbyte;
+            return wideNetworkAdress;
         }
 
         public string getNetworkAdress()
         {
             string[] str = ip.Split(".");
-            string lastbyte = "0";
+            string networkAdress = "";
             string mask = "";
-            string wideNetworkAdress = "";
-            string byteS2;
-            string byteS = "";
+            string byteAdress = "";
+            string byteBinAdress = "";
+            string networkBinAdress = "";
             for (int i = 0; i < 32; i++)
-            {
                 if (i < prefix)
                     mask += "1";
-                else
+                else 
                     mask += "0";
-            }
-            for (int i = 0; i < 3; i++)
+
+
+            for (int i = 0; i < str.Length; i++)
+                byteBinAdress += ConvertToBinary(str[i]);
+            networkBinAdress = byteAnd(byteBinAdress, mask, 32);
+
+            for (int i = 0; i < 4; i++)
             {
-                byteS2 = convertToBinary(str[i]);
                 for (int j = 0; j < 8; j++)
-                {
-                    if (byteS2[j] == '1' && mask[j + i * 8] == '1')
-                        byteS += "1";
-                    else
-                        byteS += "0";
-                }
-                wideNetworkAdress += convertToDecimal(byteS) + ".";
-                byteS = "";
+                    byteAdress += networkBinAdress[i * 8 + j];
+                if (i == 3)
+                    networkAdress += ConvertToDecimal(byteAdress);
+                else
+                    networkAdress += ConvertToDecimal(byteAdress) + ".";
+                byteAdress = "";
             }
-            return wideNetworkAdress += lastbyte;
+            return networkAdress;
         }
 
         public string getAdressMask()

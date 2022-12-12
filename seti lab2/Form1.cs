@@ -22,7 +22,7 @@ namespace seti_lab2
             
             try {
                 adress1.setIp(adress); 
-                adress1.setPrefix(prefix); 
+                adress1.SetPrefix(prefix); 
              }
             catch (Exception ex)
             {  
@@ -32,28 +32,6 @@ namespace seti_lab2
             labelNetworkMask.Text = adress1.getAdressMask();
             labelNumberOfNodes.Text = adress1.getNumberOfNodes().ToString();
             labelWideAdress.Text = adress1.getWideNetworkAdress();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Stack<subnet> subnetList = new Stack<subnet>();
-            int prefix = adress1.getPrefix();
-            int[] massOfNodes = new int[10];
-            int i = 0;
-            string inputNodes;
-            string dialogInfo = "";
-            while ((inputNodes = Interaction.InputBox("input Nodes" + "\ninputed nodes: " + dialogInfo, "title", "50")) != "")
-            {
-                dialogInfo += inputNodes + " ";
-                massOfNodes[i++] = int.Parse(inputNodes);
-                if (massOfNodes.Sum() > Math.Pow(2, 32 - prefix))
-                    return;
-            }
-            for (i = 0; i < massOfNodes.Length; i++)
-            {
-            }
-            subnet temp = subnetList.Pop();
-            listBox1.Text = "Количество узлов подсети: " + temp.size.ToString() + " Префикс:" + temp.prefix.ToString();
         }
     }
 }
