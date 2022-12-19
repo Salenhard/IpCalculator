@@ -115,27 +115,27 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(0, 99);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(194, 15);
+            this.label2.Size = new System.Drawing.Size(192, 15);
             this.label2.TabIndex = 9;
-            this.label2.Text = "широко вещательный адесс сети:";
+            this.label2.Text = "широковещательный адрес сети:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(0, 130);
+            this.label3.Location = new System.Drawing.Point(-1, 130);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(70, 15);
+            this.label3.Size = new System.Drawing.Size(71, 15);
             this.label3.TabIndex = 10;
-            this.label3.Text = " адесс сети:";
+            this.label3.Text = " адрес сети:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(0, 156);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(115, 15);
+            this.label4.Size = new System.Drawing.Size(82, 15);
             this.label4.TabIndex = 11;
-            this.label4.Text = "колличество узлов:";
+            this.label4.Text = "кол-во узлов:";
             // 
             // label5
             // 

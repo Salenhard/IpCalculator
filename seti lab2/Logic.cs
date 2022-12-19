@@ -116,6 +116,8 @@ namespace seti_lab2
             networkBinAdress = byteAnd(byteBinAdress, mask, prefix);
             for (int i = 32 - prefix; i < 32; i++)
                 networkBinAdress += "1";
+            while(networkBinAdress.Length < 32)
+                networkBinAdress+= "1";
             for (int i = 0; i < 4; i++)
             {
                 for (int j = 0; j < 8; j++)
